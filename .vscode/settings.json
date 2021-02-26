@@ -1,0 +1,5 @@
+{
+  "python.pythonPath": "/home/jcvb0206/Desktop/reto-crehana/venv/bin/python3",
+  "python.formatting.provider": "black",
+  "git.ignoreLimitWarning": true
+}
