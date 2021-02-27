@@ -2,12 +2,22 @@ import graphene
 from graphql_auth import mutations
 from graphql_auth.schema import UserQuery, MeQuery
 from graphene_django.types import DjangoObjectType, ObjectType
-from .models import Course
+from .models import Course, Category, Subcategory
 
 
 class CourseType(DjangoObjectType):
     class Meta:
         model = Course
+
+
+class CategoryType(DjangoObjectType):
+    class Meta:
+        model = Category
+
+
+class SubcategoryType(DjangoObjectType):
+    class Meta:
+        model = Subcategory
 
 
 class AuthMutation(graphene.ObjectType):
@@ -23,6 +33,7 @@ class AuthMutation(graphene.ObjectType):
 class Query(UserQuery, MeQuery, graphene.ObjectType):
     course = graphene.Field(CourseType, id=graphene.Int())
     courses = graphene.List(CourseType)
+    categories = graphene.List(CategoryType)
 
     def resolve_course(self, info, **kwargs):
         id = kwargs.get("id")
@@ -33,6 +44,9 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
 
     def resolve_courses(self, info, **kwargs):
         return Course.objects.all()
+
+    def resolve_categories(self, info, **kwargs):
+        return Category.objects.all()
 
     pass
 
