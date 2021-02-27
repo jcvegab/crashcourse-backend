@@ -30,7 +30,7 @@ class Course(models.Model):
         default=1,
     )
     score = models.DecimalField(max_digits=3, decimal_places=2)
-    username = models.CharField(max_length=255)
+    tutor_username = models.CharField(max_length=255)
     users = models.IntegerField()
     category = models.CharField(max_length=255)
     subcategory = models.CharField(max_length=255)
