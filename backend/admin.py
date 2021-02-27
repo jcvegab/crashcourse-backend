@@ -1,9 +1,12 @@
 from django.contrib import admin
-from .models import ExtendUser
+from .models import ExtendUser, Course, Category, Subcategory
 from django.apps import apps
 
 # Register your models here.
 admin.site.register(ExtendUser)
+admin.site.register(Course)
+admin.site.register(Category)
+admin.site.register(Subcategory)
 
 app = apps.get_app_config("graphql_auth")
 
