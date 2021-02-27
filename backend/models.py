@@ -13,14 +13,14 @@ class ExtendUser(AbstractUser):
 
 
 class Subcategory(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.name
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -34,7 +34,7 @@ class Course(models.Model):
         (3, "Avanzado"),
         (4, "Completo"),
     ]
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     real_price = models.DecimalField(max_digits=5, decimal_places=2)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     discount = models.IntegerField(
