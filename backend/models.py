@@ -12,6 +12,21 @@ class ExtendUser(AbstractUser):
     EMAIL_FIELD = "email"
 
 
+class Subcategory(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+
 class Course(models.Model):
     LEVEL_NAMES_CHOICES = [
         (1, "Introductorio"),
@@ -32,21 +47,6 @@ class Course(models.Model):
     score = models.DecimalField(max_digits=3, decimal_places=2)
     users = models.IntegerField()
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
-
-    def __str__(self):
-        return self.name
-
-
-class Category(models.Model):
-    name = models.CharField(max_length=255)
-    subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
-
-
-class Subcategory(models.Model):
-    name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
