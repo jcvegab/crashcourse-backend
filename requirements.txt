@@ -5,6 +5,7 @@ black==20.8b1
 click==7.1.2
 dj-static==0.0.6
 Django==3.1.7
+django-cors-headers==3.7.0
 django-filter==2.4.0
 django-graphql-auth==0.3.15
 django-graphql-jwt==0.3.1
