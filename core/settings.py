@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "backend",
+    "core.backend",
     "graphene_django",
     "graphql_jwt.refresh_token.apps.RefreshTokenConfig",
     "graphql_auth",
@@ -127,7 +127,7 @@ STATIC_URL = "/static/"
 AUTH_USER_MODEL = "backend.ExtendUser"
 
 GRAPHENE = {
-    "SCHEMA": "backend.schema.schema",
+    "SCHEMA": "core.backend.schema.schema",
     "MIDDLEWARE": [
         "graphql_jwt.middleware.JSONWebTokenMiddleware",
     ],
