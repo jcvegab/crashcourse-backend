@@ -8,6 +8,7 @@ from .models import Course, Category, Subcategory
 class CourseType(DjangoObjectType):
     class Meta:
         model = Course
+        convert_choices_to_enum = False
 
 
 class CategoryType(DjangoObjectType):
