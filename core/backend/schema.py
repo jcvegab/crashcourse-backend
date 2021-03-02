@@ -35,6 +35,7 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
     course = graphene.Field(CourseType, id=graphene.Int())
     courses = graphene.List(CourseType)
     categories = graphene.List(CategoryType)
+    subcategories = graphene.List(SubcategoryType)
 
     def resolve_course(self, info, **kwargs):
         id = kwargs.get("id")
@@ -48,7 +49,9 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
 
     def resolve_categories(self, info, **kwargs):
         return Category.objects.all()
-
+    
+    def resolve_subcategories(self, info, **kwargs):
+        return Subcategory.objects.all()
     pass
 
 
