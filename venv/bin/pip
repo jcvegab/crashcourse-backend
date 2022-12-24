@@ -1,4 +1,4 @@
-#!/home/jcvb0206/Desktop/reto-crehana/venv/bin/python3
+#!/root/jcvegab-projects/crashcourse-backend/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
