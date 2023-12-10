@@ -31,6 +31,7 @@ DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = [
     "localhost",
+    "api.crashcourse.jcvegab.site",
 ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
@@ -154,6 +155,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://crashcourse.jcvegab.site",
     "https://cursos.proyectossm.com",
+    "https://*-jcvegab.vercel.app",
 ]
 
 CSRF_COOKIE_SECURE = True
