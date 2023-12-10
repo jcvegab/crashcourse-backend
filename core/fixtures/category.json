@@ -1,0 +1,72 @@
+[
+  {
+    "pk": 1,
+    "model": "core.category",
+    "fields": {
+      "name": "Animación & 3D"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "core.category",
+    "fields": {
+      "name": "Manualidades"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "core.category",
+    "fields": {
+      "name": "Diseño"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "core.category",
+    "fields": {
+      "name": "Negocios"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "core.category",
+    "fields": {
+      "name": "Ilustración y Dibujo"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "core.category",
+    "fields": {
+      "name": "Escritura"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "core.category",
+    "fields": {
+      "name": "Fotografía"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "core.category",
+    "fields": {
+      "name": "Lifestyle"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "core.category",
+    "fields": {
+      "name": "Video"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "core.category",
+    "fields": {
+      "name": "Marketing Digital"
+    }
+  }
+]

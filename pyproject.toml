@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "crashcourse-backend"
+version = "0.1.0"
+description = "Crehana Test | API"
+authors = ["Joseph Vega <jcvb0206@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = "^5.0"
+graphene-django = "^3.1.5"
+django-cors-headers = "^4.3.1"
+django-environ = "^0.11.2"
+whitenoise = {extras = ["brotli"], version = "^6.6.0"}
+gunicorn = "^21.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]  
+build-backend = "poetry.core.masonry.api"
