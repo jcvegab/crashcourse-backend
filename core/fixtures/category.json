@@ -68,5 +68,149 @@
     "fields": {
       "name": "Marketing Digital"
     }
+  },
+  {
+    "pk": 11,
+    "model": "core.category",
+    "fields": {
+      "name": "Animación 2D",
+      "parent": 1
+    }
+  },
+  {
+    "pk": 12,
+    "model": "core.category",
+    "fields": {
+      "name": "Bordado y costura",
+      "parent": 2
+    }
+  },
+  {
+    "pk": 13,
+    "model": "core.category",
+    "fields": {
+      "name": "Branding",
+      "parent": 3
+    }
+  },
+  {
+    "pk": 14,
+    "model": "core.category",
+    "fields": {
+      "name": "Data",
+      "parent": 4
+    }
+  },
+  {
+    "pk": 15,
+    "model": "core.category",
+    "fields": {
+      "name": "Dibujo",
+      "parent": 5
+    }
+  },
+  {
+    "pk": 16,
+    "model": "core.category",
+    "fields": {
+      "name": "Escritura",
+      "parent": 6
+    }
+  },
+  {
+    "pk": 17,
+    "model": "core.category",
+    "fields": {
+      "name": "Fundamentos de fotografía",
+      "parent": 7
+    }
+  },
+  {
+    "pk": 18,
+    "model": "core.category",
+    "fields": {
+      "name": "Ilustración Digital",
+      "parent": 5
+    }
+  },
+  {
+    "pk": 19,
+    "model": "core.category",
+    "fields": {
+      "name": "Innovación",
+      "parent": 4
+    }
+  },
+  {
+    "pk": 20,
+    "model": "core.category",
+    "fields": {
+      "name": "Liderazgo",
+      "parent": 4
+    }
+  },
+  {
+    "pk": 21,
+    "model": "core.category",
+    "fields": {
+      "name": "Lifestyle",
+      "parent": 8
+    }
+  },
+  {
+    "pk": 22,
+    "model": "core.category",
+    "fields": {
+      "name": "Locución",
+      "parent": 9
+    }
+  },
+  {
+    "pk": 23,
+    "model": "core.category",
+    "fields": {
+      "name": "Marketing Digital",
+      "parent": 10
+    }
+  },
+  {
+    "pk": 24,
+    "model": "core.category",
+    "fields": {
+      "name": "Postproducción",
+      "parent": 9
+    }
+  },
+  {
+    "pk": 25,
+    "model": "core.category",
+    "fields": {
+      "name": "Producción",
+      "parent": 9
+    }
+  },
+  {
+    "pk": 26,
+    "model": "core.category",
+    "fields": {
+      "name": "Publicidad",
+      "parent": 10
+    }
+  },
+  {
+    "pk": 27,
+    "model": "core.category",
+    "fields": {
+      "name": "Retoque Fotográfico",
+      "parent": 7
+    }
+  },
+  {
+    "pk": 28,
+    "model": "core.category",
+    "fields": {
+      "name": "Ventas",
+      "parent": 4
+    }
   }
 ]

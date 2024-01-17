@@ -3,17 +3,9 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 
-class Subcategory(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name_plural = "Subcategories"
-
 class Category(models.Model):
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
+    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -41,8 +33,8 @@ class Course(models.Model):
     score = models.DecimalField(max_digits=3, decimal_places=2)
     tutor_username = models.CharField(max_length=255)
     users = models.IntegerField()
-    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
-    subcategory = models.ForeignKey(Subcategory, on_delete=models.DO_NOTHING)
+    category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL, related_name="categories")
+    subcategory = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL, related_name="subcategories")
 
     def __str__(self):
         return self.name
