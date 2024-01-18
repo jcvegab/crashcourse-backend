@@ -79,7 +79,7 @@
     "fields": {
       "name": "El arte de la escritura con Majo Moirón",
       "category": 6,
-      "subcategory": 16,
+      "subcategory": null,
       "level": 1,
       "tutor_username": "majomoiron",
       "real_price": "59",
@@ -184,7 +184,7 @@
     "fields": {
       "name": "Nutrición saludable: Alimenta una vida mejor",
       "category": 8,
-      "subcategory": 21,
+      "subcategory": null,
       "level": 4,
       "tutor_username": "adriana.puente",
       "real_price": "49",
@@ -244,7 +244,7 @@
     "fields": {
       "name": "Facebook Ads: Domina estrategias avanzadas",
       "category": 10,
-      "subcategory": 23,
+      "subcategory": null,
       "level": 3,
       "tutor_username": "laia.cardona",
       "real_price": "65",
@@ -259,7 +259,7 @@
     "fields": {
       "name": "Facebook e Instagram Ads: Campañas desde cero",
       "category": 10,
-      "subcategory": 23,
+      "subcategory": null,
       "level": 4,
       "tutor_username": "javier.arronte",
       "real_price": "49.98",

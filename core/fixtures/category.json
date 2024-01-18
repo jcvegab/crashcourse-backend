@@ -110,14 +110,6 @@
     }
   },
   {
-    "pk": 16,
-    "model": "core.category",
-    "fields": {
-      "name": "Escritura",
-      "parent": 6
-    }
-  },
-  {
     "pk": 17,
     "model": "core.category",
     "fields": {
@@ -150,27 +142,11 @@
     }
   },
   {
-    "pk": 21,
-    "model": "core.category",
-    "fields": {
-      "name": "Lifestyle",
-      "parent": 8
-    }
-  },
-  {
     "pk": 22,
     "model": "core.category",
     "fields": {
       "name": "Locución",
       "parent": 9
-    }
-  },
-  {
-    "pk": 23,
-    "model": "core.category",
-    "fields": {
-      "name": "Marketing Digital",
-      "parent": 10
     }
   },
   {
