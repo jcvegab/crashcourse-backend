@@ -14,4 +14,4 @@ Inicia el servidor con el comando:
 poetry run ./manage.py runserver
 ```
 
-Link de la API: https://api.crashcourse.jcvegab.site/graphql
+Link de la API: https://api.crashcourse.jcvegab.dev/graphql
