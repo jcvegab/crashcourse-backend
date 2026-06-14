@@ -4,18 +4,17 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('core', '0001_initial'),
+        ("core", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='category',
-            options={'verbose_name_plural': 'Categories'},
+            name="category",
+            options={"verbose_name_plural": "Categories"},
         ),
         migrations.AlterModelOptions(
-            name='subcategory',
-            options={'verbose_name_plural': 'Subcategories'},
+            name="subcategory",
+            options={"verbose_name_plural": "Subcategories"},
         ),
     ]

@@ -5,28 +5,36 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('core', '0002_alter_category_options_alter_subcategory_options'),
+        ("core", "0002_alter_category_options_alter_subcategory_options"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='Subcategory',
+            name="Subcategory",
         ),
         migrations.AlterField(
-            model_name='course',
-            name='subcategory',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='subcategories', to='core.category'),
+            model_name="course",
+            name="subcategory",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="subcategories",
+                to="core.category",
+            ),
         ),
         migrations.AddField(
-            model_name='category',
-            name='parent',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='core.category'),
+            model_name="category",
+            name="parent",
+            field=models.ForeignKey(
+                blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to="core.category"
+            ),
         ),
         migrations.AlterField(
-            model_name='course',
-            name='category',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='categories', to='core.category'),
+            model_name="course",
+            name="category",
+            field=models.ForeignKey(
+                null=True, on_delete=django.db.models.deletion.SET_NULL, related_name="categories", to="core.category"
+            ),
         ),
     ]

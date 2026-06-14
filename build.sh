@@ -2,7 +2,6 @@
 # exit on error
 set -o errexit
 
-poetry install
-
-python manage.py collectstatic --no-input
-python manage.py migrate
+uv sync --frozen --no-dev
+uv run python manage.py collectstatic --no-input
+uv run python manage.py migrate

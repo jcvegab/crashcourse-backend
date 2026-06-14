@@ -26,16 +26,20 @@ def login(request):
     except Exception:
         username = "mock_user"
 
-    return JsonResponse({
-        "access": "mock-access-token",
-        "refresh": "mock-refresh-token",
-        "user": {"id": 1, "username": username},
-    })
+    return JsonResponse(
+        {
+            "access": "mock-access-token",
+            "refresh": "mock-refresh-token",
+            "user": {"id": 1, "username": username},
+        }
+    )
 
 
 @csrf_exempt
 @require_POST
 def refresh(request):
-    return JsonResponse({
-        "access": "mock-access-token-refreshed",
-    })
+    return JsonResponse(
+        {
+            "access": "mock-access-token-refreshed",
+        }
+    )

@@ -1,23 +1,33 @@
 # AGENTS.md
 
 ## Commands
-- Install deps: `poetry install`
-- Dev server: `poetry run ./manage.py runserver`
-- Migrations: `poetry run ./manage.py makemigrations` / `poetry run ./manage.py migrate`
+
+### Local development
+- Install deps: `uv sync`
+- Dev server: `uv run ./manage.py runserver`
+- Migrations: `uv run ./manage.py makemigrations` / `uv run ./manage.py migrate`
 - Seed data: `./seed.sh` (loads `category` then `course` fixtures)
-- No lint, typecheck, or test commands configured
+- Lint: `uv run ruff check .`
+- Format: `uv run ruff format .`
+- Tests: `uv run ./manage.py test`
+
+### Docker development
+- Start: `docker compose up --build`
+- Migrations: `docker compose exec web uv run python manage.py migrate`
+- Shell: `docker compose exec web uv run python manage.py shell`
+- Seed: `docker compose exec web bash seed.sh`
 
 ## Architecture
-- Django 5.0 + graphene-django (GraphQL API, not REST)
+- Django 5.1 + graphene-django (GraphQL API, not REST)
 - Single app: `core` (models, schema, admin)
 - GraphQL endpoint: `/graphql/` (GraphiQL enabled)
 - GraphQL schema: `core/schema.py` → referenced in `GRAPHENE["SCHEMA"]` setting
-- REST URL namespace: `v1` → `core/urls.py` (currently empty)
+- REST URL namespace: `v1` → `core/urls.py` (health, auth endpoints)
 
 ## Environment
 - Requires `.env` with: `SECRET_KEY`, `DB_NAME`, `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_PORT`
+- Also supports: `CORS_ORIGIN_MAIN`, `CORS_ORIGIN_REGEX`, `RENDER_EXTERNAL_HOSTNAME`
 - DB connection requires SSL (`sslmode: require` in settings)
-- Local DB runs in Docker container
 - `DEBUG` is `True` when `RENDER` env var is absent
 
 ## Models
@@ -26,5 +36,5 @@
 - `Course.category` / `Course.subcategory`: both FK to `Category` with different `related_name`
 
 ## Deployment
-- Render (`render.yaml`): `build.sh` runs `poetry install`, `collectstatic`, `migrate`
-- Production: `gunicorn backend.wsgi:application`
+- Render (`render.yaml`): `build.sh` runs `uv sync`, `collectstatic`, `migrate`
+- Production: `uv run gunicorn backend.wsgi:application`

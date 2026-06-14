@@ -4,12 +4,18 @@ Crashcourse | Django + GraphQL Backend
 
 ## Requirements
 
-- Python ^3.10
+- Python ^3.13
 - [uv](https://docs.astral.sh/uv/) (package manager)
+- PostgreSQL (local or via Docker)
 
-## Setup
+## Quick Start
+
+### Local development
 
 ```bash
+# Copy environment file
+cp .env.example .env
+
 # Install dependencies
 uv sync
 
@@ -20,6 +26,23 @@ uv run ./manage.py migrate
 uv run ./manage.py runserver
 ```
 
+### Docker development
+
+```bash
+# Copy environment file
+cp .env.example .env
+# For Docker, edit DB_HOST to 'db' in .env
+
+# Start services
+docker compose up --build
+
+# Run migrations in container
+docker compose exec web uv run python manage.py migrate
+
+# Seed data
+docker compose exec web bash seed.sh
+```
+
 ## Environment variables
 
 Copy `.env.example` to `.env` and configure:
@@ -28,7 +51,7 @@ Copy `.env.example` to `.env` and configure:
 |---|---|
 | `SECRET_KEY` | Django secret key |
 | `DB_NAME` | Database name |
-| `DB_HOST` | Database host |
+| `DB_HOST` | Database host (use `db` for Docker, `localhost` for local) |
 | `DB_USER` | Database user |
 | `DB_PASSWORD` | Database password |
 | `DB_PORT` | Database port |
@@ -45,8 +68,32 @@ Copy `.env.example` to `.env` and configure:
 | `/v1/auth/refresh/` | POST | Mock JWT refresh |
 | `/admin/` | GET/POST | Django admin panel |
 
+## Development commands
+
+```bash
+# Lint code
+uv run ruff check .
+
+# Format code
+uv run ruff format .
+
+# Run tests
+uv run ./manage.py test
+
+# Seed data
+./seed.sh
+```
+
 ## Deployment
 
-Deployed on Render. Build command uses `uv` for dependency installation.
+Deployed on [Render](https://render.com). Build command uses `uv` for dependency installation.
 
 Production URL: https://api.crashcourse.jcvegab.dev
+
+## License
+
+MIT
+
+## Author
+
+Joseph Vega — admin@jcvegab.dev

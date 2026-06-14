@@ -1,22 +1,51 @@
-[tool.poetry]
+[project]
 name = "crashcourse-backend"
 version = "0.1.0"
 description = "Crehana Test | API"
-authors = ["Joseph Vega <admin@jcvegab.dev>"]
 readme = "README.md"
-repository = "https://github.com/jcvegab/crashcourse-backend"
+requires-python = ">=3.13"
+license = {text = "MIT"}
+authors = [
+    {name = "Joseph Vega", email = "admin@jcvegab.dev"},
+]
+keywords = ["django", "graphql", "api"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: Django",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "Django>=5.0,<5.2",
+    "graphene-django>=3.2.2",
+    "django-cors-headers>=4.6.0",
+    "django-environ>=0.11.2",
+    "whitenoise[brotli]>=6.8.2",
+    "gunicorn>=23.0.0",
+    "psycopg>=3.2.4",
+]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-Django = "^5.0"
-graphene-django = "^3.1.5"
-django-cors-headers = "^4.3.1"
-django-environ = "^0.11.2"
-whitenoise = {extras = ["brotli"], version = "^6.6.0"}
-gunicorn = "^21.2.0"
-psycopg = "^3.1.16"
+[project.urls]
+Repository = "https://github.com/jcvegab/crashcourse-backend"
 
+[tool.uv]
+package = false
 
 [build-system]
-requires = ["poetry-core"]  
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.17",
+]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["backend", "core"]

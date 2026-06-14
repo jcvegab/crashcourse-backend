@@ -1,17 +1,19 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 
+
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
+    parent = models.ForeignKey("self", null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
 
     class Meta:
         verbose_name_plural = "Categories"
+
 
 class Course(models.Model):
     LEVEL_NAMES_CHOICES = [
@@ -23,9 +25,7 @@ class Course(models.Model):
     name = models.CharField(max_length=255, unique=True)
     real_price = models.DecimalField(max_digits=5, decimal_places=2)
     price = models.DecimalField(max_digits=5, decimal_places=2)
-    discount = models.IntegerField(
-        validators=[MaxValueValidator(100), MinValueValidator(1)]
-    )
+    discount = models.IntegerField(validators=[MaxValueValidator(100), MinValueValidator(1)])
     level = models.IntegerField(
         choices=LEVEL_NAMES_CHOICES,
         default=1,

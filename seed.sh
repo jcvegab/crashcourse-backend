@@ -2,5 +2,5 @@
 # exit on error
 set -o errexit
 
-python manage.py loaddata category
-python manage.py loaddata course
+uv run python manage.py loaddata category
+uv run python manage.py loaddata course

@@ -6,11 +6,14 @@ __pycache__
 db.sqlite3
 media
 
-# Environments 
-.env 
-.venv 
-env/ 
+# Environments
+.env
+.venv
+env/
 venv/
+
+# uv (lock file is tracked by design)
+
 
 # Visual Studio Code # 
 .vscode/*
