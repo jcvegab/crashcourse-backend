@@ -1,9 +1,10 @@
 services:
   - type: web
     name: core
-    runtime: python
-    buildCommand: "./build.sh"
-    startCommand: "uv run gunicorn backend.wsgi:application"
+    runtime: docker
+    dockerContext: "."
+    dockerfilePath: Dockerfile
+    preDeployCommand: python manage.py migrate
     envVars:
       - key: SECRET_KEY
         generateValue: true

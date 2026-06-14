@@ -37,5 +37,6 @@
 - `Course.category` / `Course.subcategory`: both FK to `Category` with different `related_name`
 
 ## Deployment
-- Render (`render.yaml`): `build.sh` runs `uv sync`, `collectstatic`, `migrate`
-- Production: `uv run gunicorn backend.wsgi:application`
+- Render (`render.yaml`): Docker runtime using the project `Dockerfile`
+- Production: `gunicorn --bind 0.0.0.0:8000 backend.wsgi:application` (container CMD)
+- Migrations run automatically via Render `preDeployCommand` before each deploy
