@@ -23,10 +23,7 @@ SECRET_KEY = env("SECRET_KEY", default="dev-secret-key-change-in-production")
 
 DEBUG = not env.bool("RENDER", default=False)
 
-ALLOWED_HOSTS = [
-    "localhost",
-    "api.crashcourse.jcvegab.site",
-]
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost"])
 
 RENDER_EXTERNAL_HOSTNAME = env("RENDER_EXTERNAL_HOSTNAME", default="")
 
