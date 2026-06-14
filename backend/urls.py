@@ -20,9 +20,11 @@ from django.urls import path, include
 from django.views.decorators.csrf import csrf_exempt
 
 from graphene_django.views import GraphQLView
+from core.views import health
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("graphql/", csrf_exempt(GraphQLView.as_view(graphiql=True))),
-    path("v1", include("core.urls")),
+    path("health/", health, name="health"),
+    path("v1/", include("core.urls")),
 ]
