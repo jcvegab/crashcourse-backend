@@ -2,8 +2,9 @@
 name = "crashcourse-backend"
 version = "0.1.0"
 description = "Crehana Test | API"
-authors = ["Joseph Vega <jcvb0206@gmail.com>"]
+authors = ["Joseph Vega <admin@jcvegab.dev>"]
 readme = "README.md"
+repository = "https://github.com/jcvegab/crashcourse-backend"
 
 [tool.poetry.dependencies]
 python = "^3.10"
