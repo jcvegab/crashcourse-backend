@@ -7,6 +7,6 @@ services:
     preDeployCommand: python manage.py migrate
     envVars:
       - key: SECRET_KEY
-        generateValue: true
+        sync: false
       - key: WEB_CONCURRENCY
         value: 4

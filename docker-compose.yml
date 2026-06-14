@@ -24,6 +24,7 @@ services:
       - .env
     environment:
       - SECURE_SSL_REDIRECT=False
+      - PORT=8000
     depends_on:
       db:
         condition: service_healthy
