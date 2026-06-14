@@ -11,8 +11,9 @@
 - Format: `uv run ruff format .`
 - Tests: `uv run ./manage.py test`
 
-### Docker development
-- Start: `docker compose up --build`
+### Docker (Production Simulation)
+- Start & Build: `docker compose up --build -d`
+- Note: Docker uses `gunicorn` and `RENDER=true` to simulate production. Code is copied into the image during build. Hot-reload is disabled.
 - Migrations: `docker compose exec web uv run python manage.py migrate`
 - Shell: `docker compose exec web uv run python manage.py shell`
 - Seed: `docker compose exec web bash seed.sh`

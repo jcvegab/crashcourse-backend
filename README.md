@@ -26,15 +26,17 @@ uv run ./manage.py migrate
 uv run ./manage.py runserver
 ```
 
-### Docker development
+### Docker (Production Simulation)
+
+Docker is configured to simulate the production environment (Render) exactly. It uses `gunicorn`, disables `DEBUG` mode, and serves pre-compiled static files. It does **not** use hot-reload.
 
 ```bash
 # Copy environment file
 cp .env.example .env
 # For Docker, edit DB_HOST to 'db' in .env
 
-# Start services
-docker compose up --build
+# Build and start services
+docker compose up --build -d
 
 # Run migrations in container
 docker compose exec web uv run python manage.py migrate
@@ -42,6 +44,8 @@ docker compose exec web uv run python manage.py migrate
 # Seed data
 docker compose exec web bash seed.sh
 ```
+
+*Note: To see local code changes in Docker, you must rebuild the image using `docker compose up --build -d`.*
 
 ## Environment variables
 

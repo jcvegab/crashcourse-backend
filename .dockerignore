@@ -1,0 +1,49 @@
+# Git
+.git
+.gitignore
+
+# Virtual environments
+.venv
+venv/
+env/
+.python-version
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local environment variables
+.env
+.env.local
+
+# SQLite local database
+db.sqlite3
+
+# IDEs
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+
+# Logs and caches
+.ruff_cache
+.pytest_cache
+.mypy_cache
+
+# Misc
+README.md
+TODO.md
+AGENTS.md
+
+# Ignore Docker-related files
+docker-compose.yml
+
+# Ignore build and seed scripts
+build.sh
+seed.sh
+
+# Ignore the Dockerfile itself
+Dockerfile
