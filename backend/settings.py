@@ -29,10 +29,7 @@ if not IS_PROD:
 
 DEBUG = env.bool("DEBUG", default=False)
 
-if IS_PROD:
-    SECRET_KEY = env("SECRET_KEY")
-else:
-    SECRET_KEY = env("SECRET_KEY", default="dev-secret-key-change-in-production")
+SECRET_KEY = env("SECRET_KEY") if IS_PROD else env("SECRET_KEY", default="dev-secret-key-change-in-production")
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost"])
 ALLOWED_HOSTS.extend(platform.extra_allowed_hosts)  # hostname inyectado por la plataforma

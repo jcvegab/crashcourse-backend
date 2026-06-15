@@ -13,10 +13,10 @@ To add a new platform (Railway, Fly.io, etc.):
 import os
 from dataclasses import dataclass, field
 
-
 # ---------------------------------------------------------------------------
 # Standardized interface that settings.py consumes
 # ---------------------------------------------------------------------------
+
 
 @dataclass
 class EnvironmentConfig:
@@ -28,6 +28,7 @@ class EnvironmentConfig:
 # ---------------------------------------------------------------------------
 # Adapters by platform
 # ---------------------------------------------------------------------------
+
 
 class PlatformAdapter:
     """Base class. Every platform inherits from here."""
@@ -102,6 +103,7 @@ PLATFORM_ADAPTERS: list[PlatformAdapter] = [
 # ---------------------------------------------------------------------------
 # Main function — the only thing settings.py needs to import
 # ---------------------------------------------------------------------------
+
 
 def get_environment_config() -> EnvironmentConfig:
     """
