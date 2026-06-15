@@ -28,7 +28,9 @@ COPY . .
 ENV PATH="/app/.venv/bin:$PATH"
 
 # Collect static files
-RUN python manage.py collectstatic --no-input
+RUN RENDER=true \
+    SECRET_KEY=placeholder-for-build \
+    python manage.py collectstatic --no-input
 
 EXPOSE 8000
 

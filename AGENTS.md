@@ -53,4 +53,4 @@
 - Render (`render.yaml`): Docker runtime using the project `Dockerfile`
 - Production: `gunicorn --bind 0.0.0.0:${PORT:-8000} backend.wsgi:application` (container CMD; Render sets `PORT=10000`)
 - Migrations run automatically via Render `preDeployCommand` before each deploy
-- `Dockerfile.local-prod` hardcodes `RENDER=true` and `SECRET_KEY` during `collectstatic` to simulate production locally; the production `Dockerfile` relies on Render's platform-injected `RENDER=true` and does not hardcode these.
+- `Dockerfile` hardcodes `RENDER=true` and `SECRET_KEY` during `collectstatic` to simulate production locally;
