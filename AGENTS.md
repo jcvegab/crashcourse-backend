@@ -12,24 +12,37 @@
 - Tests: `uv run ./manage.py test`
 
 ### Docker (Production Simulation)
-- Start & Build: `docker compose up --build -d`
+- Start & Build: `docker compose --env-file .env.local up --build -d`
 - Note: Docker uses `gunicorn` and `RENDER=true` to simulate production. Code is copied into the image during build. Hot-reload is disabled.
+- Variables are passed via `env_file: .env.local` in `docker-compose.yml`; use `--env-file .env.local` for compose-level variable interpolation (`${DB_NAME}`, etc.)
 - Migrations: `docker compose exec web uv run python manage.py migrate`
 - Shell: `docker compose exec web uv run python manage.py shell`
 - Seed: `docker compose exec web bash seed.sh`
 
+## Style & Tooling
+- `ruff` line-length: 120, target Python: 3.13, first-party packages: `backend`, `core` (see `pyproject.toml`)
+- `ruff` lint selects: `E`, `F`, `I`, `UP`, `B`, `SIM`
+
 ## Architecture
-- Django 5.1 + graphene-django (GraphQL API, not REST)
-- Single app: `core` (models, schema, admin)
-- GraphQL endpoint: `/graphql/` (GraphiQL enabled)
+- Django 5.0 + graphene-django (GraphQL API) + Django-Ninja (REST API)
+- Single app: `core` (models, schema, admin, API)
+- GraphQL endpoint: `/graphql/` (GraphiQL enabled when `DEBUG=True`)
+- REST API: `core/api.py` → Django-Ninja (Swagger `/docs` only when `DEBUG=True`)
 - GraphQL schema: `core/schema.py` → referenced in `GRAPHENE["SCHEMA"]` setting
-- REST URL namespace: `v1` → `core/urls.py` (health, auth endpoints)
+- REST URL namespace: `api-0.1.0` → `core/urls.py` (all endpoints at root, no prefix)
+- REST routes: `/`, `/health/`, `/auth/login/`, `/auth/refresh/`
+- **Note**: `README.md` incorrectly lists `/v1/auth/*` — the actual routes have no `/v1` prefix.
+- `core/urls.py` explicitly strips Ninja docs (`/docs`, `/openapi.json`) when `DEBUG=False`.
 
 ## Environment
-- Requires `.env` with: `SECRET_KEY`, `DB_NAME`, `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_PORT`
-- Also supports: `CORS_ORIGIN_MAIN`, `CORS_ORIGIN_REGEX`, `RENDER_EXTERNAL_HOSTNAME`
-- DB connection requires SSL (`sslmode: require` in settings)
-- `DEBUG` is `True` when `RENDER` env var is absent
+- Local dev requires `.env.local` with: `SECRET_KEY`, `DB_NAME`, `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_PORT`
+- `.env` is fallback if `.env.local` is missing (loaded only when not on Render)
+- Production (Render) uses platform env vars; `.env` is fallback
+- Also supports: `DEBUG`, `CORS_ORIGIN_MAIN`, `CORS_ORIGIN_REGEX`, `RENDER_EXTERNAL_HOSTNAME`, `SECURE_SSL_REDIRECT`
+- `DEBUG` is user-controlled, editable in `.env.local` or platform env; controls Swagger docs, GraphiQL, Django error pages
+- `RENDER` is platform-controlled (auto-set by Render), determines SSL mode, WhiteNoise, CORS origins
+- The two flags are independent: `DEBUG=True` can coexist with `RENDER=true` (debugging on production)
+- DB SSL (`sslmode: require`) is enabled when `IS_PROD=True` (derived from `RENDER=true`), not by `DEBUG`
 
 ## Models
 - `Category`: self-referential `parent` FK (tree structure — categories and subcategories share one table)
@@ -40,3 +53,4 @@
 - Render (`render.yaml`): Docker runtime using the project `Dockerfile`
 - Production: `gunicorn --bind 0.0.0.0:${PORT:-8000} backend.wsgi:application` (container CMD; Render sets `PORT=10000`)
 - Migrations run automatically via Render `preDeployCommand` before each deploy
+- `Dockerfile.local-prod` hardcodes `RENDER=true` and `SECRET_KEY` during `collectstatic` to simulate production locally; the production `Dockerfile` relies on Render's platform-injected `RENDER=true` and does not hardcode these.
