@@ -108,14 +108,14 @@ Copy `.env.example` to `.env.local` for local development. `.env` is only fallba
 - **REST:** `core/api.py` exposes Django Ninja routes at root level.
 - **Models:** `Category` is self-referential via `parent`; `Course` links to `category` and `subcategory` and stores integer `level` choices.
 - **Settings:** `backend/env_adapter.py` centralizes platform detection; `backend/settings.py` derives production behavior from `RENDER`, not `DEBUG`.
-- **Codebase memory:** indexed as `home-jcvegab-jcvegab-projects-crashcourse-backend` for graph-based discovery.
+- **Local code analysis:** this repo uses a local code analysis tool for structural discovery. Do not document index names, local paths or machine-specific details.
 
 ## Documentation
 
-- `docs/documentation-update-plan.md` — applied plan for README, package metadata, docs and GitHub topics.
 - `docs/architecture.md` — app structure, runtime modes and data model notes.
 - `docs/api-reference.md` — GraphQL and REST endpoint reference.
 - `docs/deployment.md` — local, Docker and Render deployment notes.
+- `docs/technical-debt.md` — TODOs, follow-ups and technical debt.
 
 ## Deployment
 

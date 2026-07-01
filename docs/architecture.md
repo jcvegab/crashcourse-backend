@@ -54,12 +54,6 @@
 - REST routes are mounted at root.
 - Django Ninja docs and OpenAPI output are hidden when `DEBUG=False`.
 
-## Codebase Memory
+## Local Code Analysis
 
-Project index name:
-
-```text
-home-jcvegab-jcvegab-projects-crashcourse-backend
-```
-
-Use the graph index for structural discovery before broad text searches.
+Use the local code analysis tool for structural discovery before broad text searches. Do not document index names, local paths or machine-specific details.
