@@ -59,7 +59,7 @@ query Courses {
 
 ## REST
 
-REST endpoints are mounted at root through Django Ninja. There is no `/v1` prefix.
+REST endpoints are mounted at root through Django Ninja.
 
 | Endpoint | Method | Response | Notes |
 |---|---|---|---|

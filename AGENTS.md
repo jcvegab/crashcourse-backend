@@ -31,7 +31,6 @@
 - GraphQL schema: `core/schema.py` → referenced in `GRAPHENE["SCHEMA"]` setting
 - REST URL namespace: `api-0.1.0` → `core/urls.py` (all endpoints at root, no prefix)
 - REST routes: `/`, `/health/`, `/auth/login/`, `/auth/refresh/`
-- **Note**: `README.md` incorrectly lists `/v1/auth/*` — the actual routes have no `/v1` prefix.
 - `core/urls.py` explicitly strips Ninja docs (`/docs`, `/openapi.json`) when `DEBUG=False`.
 
 ## Environment

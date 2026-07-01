@@ -51,7 +51,7 @@
 
 - GraphQL is the primary read API for frontend course/category data.
 - REST is intentionally small and currently covers root, health and mock auth.
-- REST routes are mounted at root. There is no `/v1` prefix.
+- REST routes are mounted at root.
 - Django Ninja docs and OpenAPI output are hidden when `DEBUG=False`.
 
 ## Codebase Memory
