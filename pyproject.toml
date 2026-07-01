@@ -1,14 +1,25 @@
 [project]
 name = "crashcourse-backend"
 version = "0.1.0"
-description = "Crehana Test | API"
+description = "Crashcourse Backend | Django 5 API for a course platform with GraphQL, Django Ninja REST, PostgreSQL, Docker and Render deployment."
 readme = "README.md"
 requires-python = ">=3.13"
 license = {text = "MIT"}
 authors = [
     {name = "Joseph Vega", email = "admin@jcvegab.dev"},
 ]
-keywords = ["django", "graphql", "api"]
+keywords = [
+    "api",
+    "course-platform",
+    "django",
+    "django-ninja",
+    "docker",
+    "graphene-django",
+    "graphql",
+    "postgresql",
+    "python",
+    "render",
+]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Framework :: Django",

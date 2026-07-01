@@ -1,20 +1,27 @@
-# crashcourse-backend
+# Crashcourse Backend
 
-Crashcourse | Django + GraphQL Backend
+Backend de Crashcourse: API Django 5 para una plataforma de cursos, con GraphQL mediante `graphene-django`, endpoints REST con Django Ninja, PostgreSQL, Docker y despliegue en Render.
+
+## Project Scope
+
+- Catálogo de cursos y categorías jerárquicas.
+- API GraphQL para consumo server-side desde [`crashcourse-frontend`](https://github.com/jcvegab/crashcourse-frontend).
+- REST API mínima para health check y auth mock.
+- Configuración productiva con `gunicorn`, WhiteNoise, PostgreSQL SSL y CORS para dominio principal/previews.
+- Fixtures de seed para datos iniciales de categorías y cursos.
 
 ## Requirements
 
-- Python ^3.13
-- [uv](https://docs.astral.sh/uv/) (package manager)
-- PostgreSQL (local or via Docker)
+- Python >= 3.13
+- [uv](https://docs.astral.sh/uv/) como package manager
+- PostgreSQL local o vía Docker
+- Docker + Docker Compose para simulación productiva
 
 ## Quick Start
 
-### Local development
-
 ```bash
 # Copy environment file
-cp .env.example .env
+cp .env.example .env.local
 
 # Install dependencies
 uv sync
@@ -22,21 +29,22 @@ uv sync
 # Apply pending migrations
 uv run ./manage.py migrate
 
+# Seed local data
+./seed.sh
+
 # Start dev server
 uv run ./manage.py runserver
 ```
 
-### Docker (Production Simulation)
+Open [http://localhost:8000/graphql/](http://localhost:8000/graphql/) when `DEBUG=True`.
 
-Docker is configured to simulate the production environment (Render) exactly. It uses `gunicorn`, disables `DEBUG` mode, and serves pre-compiled static files. It does **not** use hot-reload.
+## Docker
+
+Docker simula producción: usa `gunicorn`, activa `RENDER=true`, corre con PostgreSQL en contenedor y no tiene hot reload.
 
 ```bash
-# Copy environment file
-cp .env.example .env
-# For Docker, edit DB_HOST to 'db' in .env
-
-# Build and start services
-docker compose up --build -d
+# Uses .env.local for compose interpolation and container env
+docker compose --env-file .env.local up --build -d
 
 # Run migrations in container
 docker compose exec web uv run python manage.py migrate
@@ -45,54 +53,81 @@ docker compose exec web uv run python manage.py migrate
 docker compose exec web bash seed.sh
 ```
 
-*Note: To see local code changes in Docker, you must rebuild the image using `docker compose up --build -d`.*
+To see code changes in Docker, rebuild the image with `docker compose --env-file .env.local up --build -d`.
 
-## Environment variables
+## Environment Variables
 
-Copy `.env.example` to `.env` and configure:
+Copy `.env.example` to `.env.local` for local development. `.env` is only fallback when `.env.local` is missing and `RENDER` is not active.
 
 | Variable | Description |
 |---|---|
-| `SECRET_KEY` | Django secret key |
-| `DB_NAME` | Database name |
-| `DB_HOST` | Database host (use `db` for Docker, `localhost` for local) |
-| `DB_USER` | Database user |
-| `DB_PASSWORD` | Database password |
-| `DB_PORT` | Database port |
-| `CORS_ORIGIN_MAIN` | Production CORS origin (default: `https://crashcourse.jcvegab.dev`) |
-| `CORS_ORIGIN_REGEX` | Production CORS regex for Vercel previews (default: `^https://.*-jcvegab\.vercel\.app$`) |
+| `SECRET_KEY` | Django secret key. Required in production. |
+| `DEBUG` | Enables GraphiQL, Ninja docs and Django debug pages when `True`. |
+| `ALLOWED_HOSTS` | Comma-separated Django hosts. Render hostname is appended automatically. |
+| `DB_NAME` | PostgreSQL database name. |
+| `DB_HOST` | Database host. Use `localhost` locally and `db` in Docker. |
+| `DB_USER` | PostgreSQL user. |
+| `DB_PASSWORD` | PostgreSQL password. |
+| `DB_PORT` | PostgreSQL port. |
+| `CORS_ORIGIN_MAIN` | Production frontend origin. Default: `https://crashcourse.jcvegab.dev`. |
+| `CORS_ORIGIN_REGEX` | Production preview origin regex. Default: `^https://.*-jcvegab\.vercel\.app$`. |
+| `RENDER` | Platform flag. Enables production mode, SSL DB connections and WhiteNoise storage. |
+| `RENDER_EXTERNAL_HOSTNAME` | Render hostname injected by platform and appended to `ALLOWED_HOSTS`. |
+| `SECURE_SSL_REDIRECT` | Forces HTTPS redirect when `True`. |
 
-## Available endpoints
+## Available Endpoints
 
 | Endpoint | Method | Description |
 |---|---|---|
-| `/graphql/` | GET/POST | GraphQL API (GraphiQL enabled) |
-| `/health/` | GET | Health check (returns DB status) |
-| `/v1/auth/login/` | POST | Mock JWT login |
-| `/v1/auth/refresh/` | POST | Mock JWT refresh |
-| `/admin/` | GET/POST | Django admin panel |
+| `/` | GET | REST API root with name/version. |
+| `/graphql/` | GET/POST | GraphQL API. GraphiQL only when `DEBUG=True`. |
+| `/health/` | GET | Health check with database connectivity status. |
+| `/auth/login/` | POST | Mock token login. |
+| `/auth/refresh/` | POST | Mock token refresh. |
+| `/docs` | GET | Django Ninja Swagger docs only when `DEBUG=True`. |
+| `/openapi.json` | GET | OpenAPI schema only when `DEBUG=True`. |
+| `/admin/` | GET/POST | Django admin panel. |
 
-## Development commands
+## Development Commands
 
-```bash
-# Lint code
-uv run ruff check .
+| Command | Description |
+|---|---|
+| `uv sync` | Install dependencies from `uv.lock`. |
+| `uv run ./manage.py runserver` | Start local Django server. |
+| `uv run ./manage.py makemigrations` | Create Django migrations. |
+| `uv run ./manage.py migrate` | Apply Django migrations. |
+| `./seed.sh` | Load category and course fixtures. |
+| `uv run ruff check .` | Run lint checks. |
+| `uv run ruff format .` | Format Python files. |
+| `uv run ./manage.py test` | Run Django tests. |
 
-# Format code
-uv run ruff format .
+## Architecture
 
-# Run tests
-uv run ./manage.py test
+- **Framework:** Django 5.0 with one first-party app, `core`.
+- **GraphQL:** `core/schema.py` defines `CourseType`, `CategoryType` and read queries for courses/categories.
+- **REST:** `core/api.py` exposes Django Ninja routes at root level, without `/v1` prefix.
+- **Models:** `Category` is self-referential via `parent`; `Course` links to `category` and `subcategory` and stores integer `level` choices.
+- **Settings:** `backend/env_adapter.py` centralizes platform detection; `backend/settings.py` derives production behavior from `RENDER`, not `DEBUG`.
+- **Codebase memory:** indexed as `home-jcvegab-jcvegab-projects-crashcourse-backend` for graph-based discovery.
 
-# Seed data
-./seed.sh
-```
+## Documentation
+
+- `docs/documentation-update-plan.md` — applied plan for README, package metadata, docs and GitHub topics.
+- `docs/architecture.md` — app structure, runtime modes and data model notes.
+- `docs/api-reference.md` — GraphQL and REST endpoint reference.
+- `docs/deployment.md` — local, Docker and Render deployment notes.
 
 ## Deployment
 
-Deployed on [Render](https://render.com). Build command uses `uv` for dependency installation.
+Target: [Render](https://render.com) with Docker runtime.
+
+`render.yaml` points to `Dockerfile` and runs migrations through `preDeployCommand` before each deploy. The container starts `gunicorn --bind 0.0.0.0:${PORT:-8000} backend.wsgi:application`.
 
 Production URL: https://api.crashcourse.jcvegab.dev
+
+## Related
+
+- [crashcourse-frontend](https://github.com/jcvegab/crashcourse-frontend) — Next.js client consuming this API.
 
 ## License
 
