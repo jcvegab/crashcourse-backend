@@ -1,6 +1,6 @@
 # Architecture
 
-`crashcourse-backend` is a Django 5 API with one first-party app, `core`.
+`crashcourse-backend` is a Django 6.1 API with one first-party app, `core`.
 
 ## Project Layout
 

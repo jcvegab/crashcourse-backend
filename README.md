@@ -1,6 +1,6 @@
 # Crashcourse Backend
 
-Backend de Crashcourse: API Django 5 para una plataforma de cursos, con GraphQL mediante `graphene-django`, endpoints REST con Django Ninja, PostgreSQL, Docker y despliegue en Render.
+Backend de Crashcourse: API Django 6.1 para una plataforma de cursos, con GraphQL mediante `strawberry-graphql-django`, endpoints REST con Django Ninja, PostgreSQL, Docker y despliegue en Render.
 
 ## Project Scope
 
@@ -103,7 +103,7 @@ Copy `.env.example` to `.env.local` for local development. `.env` is only fallba
 
 ## Architecture
 
-- **Framework:** Django 5.0 with one first-party app, `core`.
+- **Framework:** Django 6.1 with one first-party app, `core`.
 - **GraphQL:** `core/schema.py` defines `CourseType`, `CategoryType` and read queries for courses/categories.
 - **REST:** `core/api.py` exposes Django Ninja routes at root level.
 - **Models:** `Category` is self-referential via `parent`; `Course` links to `category` and `subcategory` and stores integer `level` choices.

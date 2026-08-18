@@ -24,11 +24,11 @@
 - `ruff` lint selects: `E`, `F`, `I`, `UP`, `B`, `SIM`
 
 ## Architecture
-- Django 5.0 + graphene-django (GraphQL API) + Django-Ninja (REST API)
+- Django 6.1 + Strawberry Django (GraphQL API) + Django-Ninja (REST API)
 - Single app: `core` (models, schema, admin, API)
 - GraphQL endpoint: `/graphql/` (GraphiQL enabled when `DEBUG=True`)
 - REST API: `core/api.py` → Django-Ninja (Swagger `/docs` only when `DEBUG=True`)
-- GraphQL schema: `core/schema.py` → referenced in `GRAPHENE["SCHEMA"]` setting
+- GraphQL schema: `core/schema.py` → passed to Strawberry `GraphQLView` in `backend/urls.py`
 - REST URL namespace: `api-0.1.0` → `core/urls.py` (all endpoints at root, no prefix)
 - REST routes: `/`, `/health/`, `/auth/login/`, `/auth/refresh/`
 - `core/urls.py` explicitly strips Ninja docs (`/docs`, `/openapi.json`) when `DEBUG=False`.
