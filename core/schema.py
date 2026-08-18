@@ -1,37 +1,58 @@
-import graphene
-from graphene_django.types import DjangoObjectType
+from __future__ import annotations
+
+import strawberry
+import strawberry_django
+from strawberry import auto
 
 from .models import Category, Course
 
 
-class CourseType(DjangoObjectType):
-    class Meta:
-        model = Course
-        convert_choices_to_enum = False
+@strawberry_django.type(Course, name="CourseType")
+class CourseType:
+    id: auto
+    name: auto
+    real_price: auto
+    price: auto
+    discount: auto
+    level: auto
+    score: auto
+    tutor_username: auto
+    users: auto
+    category: CategoryType | None
+    subcategory: CategoryType | None
 
 
-class CategoryType(DjangoObjectType):
-    class Meta:
-        model = Category
+@strawberry_django.type(Category, name="CategoryType")
+class CategoryType:
+    id: auto
+    name: auto
+    parent: CategoryType | None
+    category_set: list[CategoryType]
+    courses: list[CourseType]
+    subcourses: list[CourseType]
 
 
-class Query(graphene.ObjectType):
-    course = graphene.Field(CourseType, id=graphene.Int())
-    courses = graphene.List(CourseType)
-    category = graphene.Field(CategoryType, id=graphene.Int())
-    categories = graphene.List(CategoryType)
+@strawberry.type
+class Query:
+    @strawberry.field
+    def course(self, id: int | None = strawberry.UNSET) -> CourseType | None:
+        if id is strawberry.UNSET or id is None:
+            return None
+        return Course.objects.filter(pk=id).first()
 
-    def resolve_course(self, info, **kwargs):
-        id = kwargs.get("id")
-        if id is not None:
-            return Course.objects.filter(pk=id).first()
-        return None
-
-    def resolve_courses(self, info, **kwargs):
+    @strawberry.field
+    def courses(self) -> list[CourseType | None] | None:
         return Course.objects.all()
 
-    def resolve_categories(self, info, **kwargs):
+    @strawberry.field
+    def category(self, id: int | None = strawberry.UNSET) -> CategoryType | None:
+        if id is strawberry.UNSET or id is None:
+            return None
+        return Category.objects.filter(pk=id).first()
+
+    @strawberry.field
+    def categories(self) -> list[CategoryType | None] | None:
         return Category.objects.all()
 
 
-schema = graphene.Schema(query=Query)
+schema = strawberry.Schema(query=Query)

@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "core",
-    "graphene_django",
+    "strawberry_django",
     "corsheaders",
 ]
 
@@ -138,12 +138,6 @@ if IS_PROD:
     }
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-# ---------------------------------------------------------------------------
-# GraphQL
-# ---------------------------------------------------------------------------
-
-GRAPHENE = {"SCHEMA": "core.schema.schema"}
 
 # ---------------------------------------------------------------------------
 # CORS

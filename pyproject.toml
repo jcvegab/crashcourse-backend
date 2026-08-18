@@ -28,7 +28,8 @@ classifiers = [
 ]
 dependencies = [
     "django==5.2.17",
-    "graphene-django>=3.2.2",
+    "strawberry-graphql==0.324.0",
+    "strawberry-graphql-django==0.87.0",
     "django-cors-headers>=4.6.0",
     "django-environ==0.14.0",
     "whitenoise[brotli]>=6.8.2",
