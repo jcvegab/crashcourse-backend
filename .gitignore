@@ -15,6 +15,8 @@ venv/
 
 # uv (lock file is tracked by design)
 
-
-# Visual Studio Code # 
+# Visual Studio Code
 .vscode/*
+
+# Idea
+.idea
