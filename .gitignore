@@ -20,3 +20,6 @@ venv/
 
 # Idea
 .idea
+
+# AI
+.agents
