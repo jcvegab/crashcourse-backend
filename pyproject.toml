@@ -27,15 +27,15 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
 ]
 dependencies = [
-    "django==6.1",
-    "strawberry-graphql==0.324.0",
-    "strawberry-graphql-django==0.87.1",
+    "django==6.1.1",
+    "strawberry-graphql==0.325.0",
+    "strawberry-graphql-django==0.88.0",
     "django-cors-headers>=4.6.0",
     "django-environ==0.14.0",
     "whitenoise[brotli]>=6.8.2",
-    "gunicorn==26.1.0",
+    "gunicorn==26.2.0",
     "psycopg>=3.2.4",
-    "django-ninja==1.6.3",
+    "django-ninja==1.7.0",
 ]
 
 [project.urls]

@@ -71,14 +71,14 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "django", specifier = "==6.1" },
+    { name = "django", specifier = "==6.1.1" },
     { name = "django-cors-headers", specifier = ">=4.6.0" },
     { name = "django-environ", specifier = "==0.14.0" },
-    { name = "django-ninja", specifier = "==1.6.3" },
-    { name = "gunicorn", specifier = "==26.1.0" },
+    { name = "django-ninja", specifier = "==1.7.0" },
+    { name = "gunicorn", specifier = "==26.2.0" },
     { name = "psycopg", specifier = ">=3.2.4" },
-    { name = "strawberry-graphql", specifier = "==0.324.0" },
-    { name = "strawberry-graphql-django", specifier = "==0.87.1" },
+    { name = "strawberry-graphql", specifier = "==0.325.0" },
+    { name = "strawberry-graphql-django", specifier = "==0.88.0" },
     { name = "whitenoise", extras = ["brotli"], specifier = ">=6.8.2" },
 ]
 
@@ -99,16 +99,16 @@ wheels = [
 
 [[package]]
 name = "django"
-version = "6.1"
+version = "6.1.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "asgiref" },
     { name = "sqlparse" },
     { name = "tzdata", marker = "sys_platform == 'win32'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e2/42/6cb20996733984c1f6661daeda3877990836c76c633c6c8879d39f7120eb/django-6.1.tar.gz", hash = "sha256:86a2aacd59b817e4d6ac2ebfe22356c58f66f7b24e503f71b7c2fead677ee48b", size = 11223034, upload-time = "2026-08-05T19:21:53.789Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/f8/d4/8314b5bdef20832f0ac6ae3b3e4d4924e4759fa3b4af27609dd747e7a6be/django-6.1.1.tar.gz", hash = "sha256:7ab93536d8e677aa14554c56426290c69480bf2ee68d7513d4a22f57d6bfeb84", size = 11284905, upload-time = "2026-09-02T17:20:45.621Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/91/9c/ce847620134cfab903e75690c498af73b46abbede2912ea89bd76d5c1e76/django-6.1-py3-none-any.whl", hash = "sha256:6c132cd980c9392b06807d4ca52d72530d631dc65a85d9dacede00a780cefbbe", size = 8417399, upload-time = "2026-08-05T19:21:47.285Z" },
+    { url = "https://files.pythonhosted.org/packages/8d/ca/c1040a4fd15754ede7df15fd72fc2e123045b473b253ab5f5284e11c651e/django-6.1.1-py3-none-any.whl", hash = "sha256:585fb82bf15053c42cf52e67c2f1b54a032dca384759315fd6678ab1870d1d72", size = 8419512, upload-time = "2026-09-02T17:20:39.153Z" },
 ]
 
 [[package]]
@@ -135,15 +135,15 @@ wheels = [
 
 [[package]]
 name = "django-ninja"
-version = "1.6.3"
+version = "1.7.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django" },
     { name = "pydantic" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/a2/57/71cc769a7410ade9bd1cddee16132e3da7718fcce1386c67ade7ea939677/django_ninja-1.6.3.tar.gz", hash = "sha256:a65a5016bbf044702fb1f1ff702f96dc3c806fbd7c918290512659531873039f", size = 2340438, upload-time = "2026-08-17T08:45:42.703Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/25/f7/410af3b53845f04c94a9dabe5934117d9546b6f5ce4028cff5b74deb933c/django_ninja-1.7.0.tar.gz", hash = "sha256:7a0ce06c978a42a808d9a9d7ba1cda383df8eea90040cfc232ad10b7d9024e0d", size = 2341450, upload-time = "2026-08-30T17:49:19.718Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e3/de/061d08265951765835166a2c69f0b99a8f49dfbea85d7d204ac87a236679/django_ninja-1.6.3-py3-none-any.whl", hash = "sha256:e83ba573e0f17b1d2fddca078613e2aaad512acb3d3c6bc9a5f1a0d9257dd70c", size = 2375010, upload-time = "2026-08-17T08:45:40.473Z" },
+    { url = "https://files.pythonhosted.org/packages/54/d6/f4f939b912c696b6fc19e15ed3b2b37ac7cb09600373e83211f44adaf6d5/django_ninja-1.7.0-py3-none-any.whl", hash = "sha256:f1a0f762c9810dabcb040fcff76c6e2f5d0cdb51b4a597799ee06b5df8481f3f", size = 2376156, upload-time = "2026-08-30T17:49:17.552Z" },
 ]
 
 [[package]]
@@ -157,11 +157,11 @@ wheels = [
 
 [[package]]
 name = "gunicorn"
-version = "26.1.0"
+version = "26.2.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/38/b8/ec4ba3f6cace4091c34e27478b576bb80f2f06fab80fd42c0ecc785b308f/gunicorn-26.1.0.tar.gz", hash = "sha256:1413d777bf99d31ebeb08acd354b01f1ecc44db0aa7b811ae7b86c669232e4f7", size = 755923, upload-time = "2026-08-18T11:49:39.438Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d9/8a/e4ef6ee11701b6cd64702848415ffb69eeff85cb388a3c6c7fe86f22f3f8/gunicorn-26.2.0.tar.gz", hash = "sha256:62b864895d9ebff0b2f9867ba04fe811c93121596540830c9c916d0769668447", size = 787921, upload-time = "2026-08-24T15:05:59.3Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/19/dc/7a55fc605543fd5cb11c003fbbb21a1911d5e88a582cce6c5e063bf5c176/gunicorn-26.1.0-py3-none-any.whl", hash = "sha256:9f45bcddec5e9dc7a25a3bdccb0c6832f11fd5d4739b1ee36c8d2fec25f1dc86", size = 216237, upload-time = "2026-08-18T11:49:38.001Z" },
+    { url = "https://files.pythonhosted.org/packages/fe/85/7522a52e5e2f42faf1a129113ab63e548c42e103e9af395b7bfe65e403e2/gunicorn-26.2.0-py3-none-any.whl", hash = "sha256:bd249d0b3f7972f7432f0a6b6ff3b3ee2d129f70cd1ff6c09a9dd9e29a2b88e3", size = 228389, upload-time = "2026-08-24T15:05:57.67Z" },
 ]
 
 [[package]]
@@ -175,14 +175,14 @@ wheels = [
 
 [[package]]
 name = "psycopg"
-version = "3.3.4"
+version = "3.3.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "tzdata", marker = "sys_platform == 'win32'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/db/2f/cb91e5502ec9de1de6f1b76cfbf69531932725361168bb06963620c77e2e/psycopg-3.3.4.tar.gz", hash = "sha256:e21207764952cff81b6b8bdacad9a3939f2793367fdac2987b3aac36a651b5bc", size = 165799, upload-time = "2026-05-01T23:31:55.179Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/72/73/8fb739d0f6bba247b9b93c9840c402a4f88545be5f1d4b02b23366371c00/psycopg-3.3.5.tar.gz", hash = "sha256:d0a3d9ccf5788af054cbd745278cb02401b5c312aeaafbf2c6144460aec47da4", size = 166508, upload-time = "2026-08-31T22:45:43.151Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5c/e0/7b3dee031daae7743609ce3c746565d4a3ed7c2c186479eb48e34e838c64/psycopg-3.3.4-py3-none-any.whl", hash = "sha256:b6bbc25ccf05c8fad3b061d9db2ef0909a555171b84b07f29458a447253d679a", size = 213001, upload-time = "2026-05-01T23:20:50.816Z" },
+    { url = "https://files.pythonhosted.org/packages/3d/2e/d0a645bcaadde68bd6d93c43f02f14b0191bdda367ce3f7722abe3da744a/psycopg-3.3.5-py3-none-any.whl", hash = "sha256:ce5aa5cdb4f9379f00f487590e5890bfa7df9a164648c969ffa628505e21af4e", size = 213598, upload-time = "2026-08-31T22:39:02.184Z" },
 ]
 
 [[package]]
@@ -313,7 +313,7 @@ wheels = [
 
 [[package]]
 name = "strawberry-graphql"
-version = "0.324.0"
+version = "0.325.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cross-web" },
@@ -322,23 +322,23 @@ dependencies = [
     { name = "python-dateutil" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/6b/f9/7e121f55c93864cbedf2bbcf8920e2456da3adf05d9f3eef101db6633fec/strawberry_graphql-0.324.0.tar.gz", hash = "sha256:4eb6decf0c33524374f24e07ff6d1915da26655a49fa6f656544c293404e2d35", size = 235911, upload-time = "2026-08-10T15:05:44.494Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/5d/67/ac3a9eedff537fe881c7802aec81c27c6bda74015fe6b029328b703e494f/strawberry_graphql-0.325.0.tar.gz", hash = "sha256:432c70fbaf91bd0721cffdaaed933ef32101975296eab7b874218db0c4e9b679", size = 237154, upload-time = "2026-08-30T09:45:00.909Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/bc/56/52b78a3e8de057aadc42f61c82727a914fbb95accc6aae1b5ff0d54e43c9/strawberry_graphql-0.324.0-py3-none-any.whl", hash = "sha256:08c8b3256a1c909c7721f3c1d8e161ac40505ca14991c39d8492898b17e77b6d", size = 338683, upload-time = "2026-08-10T15:05:42.564Z" },
+    { url = "https://files.pythonhosted.org/packages/ef/3f/007344951375565e5f0be57138c70c5e8238cb7b477250ec408f09e6f14d/strawberry_graphql-0.325.0-py3-none-any.whl", hash = "sha256:bf1571b5b9ec9e728317b9369c7a070d15c7275034cff92d32c5813b1753b5bc", size = 340554, upload-time = "2026-08-30T09:44:59.589Z" },
 ]
 
 [[package]]
 name = "strawberry-graphql-django"
-version = "0.87.1"
+version = "0.88.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "asgiref" },
     { name = "django" },
     { name = "strawberry-graphql" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/79/33/e7b82519e4e7c3d5da3424f25fccc806e540fae9032e614dfefaa7539cad/strawberry_graphql_django-0.87.1.tar.gz", hash = "sha256:56ff0d101af6097ad7a2180a3f5128dc368d8b9cc9d18bbb25c447f888686804", size = 96474, upload-time = "2026-08-26T17:14:13.063Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b6/26/3f5011bc2f0b1cc144fca8bdf800202c88f78346b3c76b32b95e52569229/strawberry_graphql_django-0.88.0.tar.gz", hash = "sha256:13506907423a91b0f2058d3fa078293f3e8ca5c98d49724aad7f74593571deed", size = 96750, upload-time = "2026-08-29T16:00:48.485Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/29/26/7b5b6ce7aa7886a0752c01043f6b60a72da294f766e5fb61c6d737e4ed7b/strawberry_graphql_django-0.87.1-py3-none-any.whl", hash = "sha256:0c9427653b6ad97fa5a083dc0b560f046e6ca9077eb71e45247f55f8014cfc00", size = 120801, upload-time = "2026-08-26T17:14:11.86Z" },
+    { url = "https://files.pythonhosted.org/packages/04/fb/d9d52217a50757303e4790394b2be53ea0cd9567faaa8f7adf4608068f11/strawberry_graphql_django-0.88.0-py3-none-any.whl", hash = "sha256:2ec77cc78af464d0b48cefa08f8bbdf0f24b0849e7467b0124e85ce1fd5a770b", size = 121015, upload-time = "2026-08-29T16:00:47.176Z" },
 ]
 
 [[package]]
