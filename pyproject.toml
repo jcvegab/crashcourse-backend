@@ -27,9 +27,9 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
 ]
 dependencies = [
-    "django==6.1.1",
-    "strawberry-graphql==0.327.7",
-    "strawberry-graphql-django==0.90.0",
+    "django==6.1.2",
+    "strawberry-graphql==0.331.6",
+    "strawberry-graphql-django==0.92.3",
     "django-cors-headers>=4.6.0",
     "django-environ==0.14.0",
     "whitenoise[brotli]>=6.8.2",
