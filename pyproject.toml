@@ -28,14 +28,14 @@ classifiers = [
 ]
 dependencies = [
     "django==6.1.2",
-    "strawberry-graphql==0.336.0",
+    "strawberry-graphql==0.338.0",
     "strawberry-graphql-django==0.93.0",
     "django-cors-headers>=4.6.0",
     "django-environ==0.14.0",
     "whitenoise[brotli]>=6.8.2",
     "gunicorn==26.2.0",
     "psycopg>=3.2.4",
-    "django-ninja==1.7.1",
+    "django-ninja==1.7.3",
 ]
 
 [project.urls]
